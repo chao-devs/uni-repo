@@ -3,6 +3,8 @@ from pathlib import Path
 from datetime import datetime
 from pydantic import BaseModel
 from openai import OpenAI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import os,json
@@ -16,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -93,4 +96,4 @@ def structure(data:Input):
 
 @app.get("/")
 def home():
-    return {"message": "API is running!"}
+    return FileResponse("static/index.html")
