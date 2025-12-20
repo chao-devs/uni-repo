@@ -7,19 +7,20 @@
 <body>
   <h1>レポナビ（構成AI）</h1>
 
-  <textarea id="theme" rows="5" cols="60" placeholder="レポートのテーマを入力してください"></textarea>
-  <br><br>
-
-  <button id="generateBtn">構成を生成する</button>
+<input id="theme">
+<input id="task">
+<input id="length">
+<button id="templateBtn">テンプレートを生成</button>
 
   <hr>
 
   <pre id="result">ここに結果が表示されます</pre>
 
   <script>
-    const button = document.getElementById("generateBtn");
-    const result = document.getElementById("result");
-    const themeInput = document.getElementById("theme");
+    const themeInput  = document.getElementById("theme");
+    const taskInput   = document.getElementById("task");
+    const lengthInput = document.getElementById("length");
+    const templateBtn = document.getElementById("templateBtn");
 
     button.addEventListener("click", async () => {
       const theme = themeInput.value;
