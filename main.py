@@ -109,3 +109,7 @@ def structure(data:Input):
         "length" : data.length,
         "structure" : structuring
     }
+
+@app.get("/")
+def home():
+    return FileResponse("static/index.html")
