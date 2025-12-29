@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import os,json
 
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -27,6 +28,11 @@ class Input(BaseModel):
     text : str
     length : int
     faculty : str
+
+class StructureResponse(BaseModel):
+    plan1 : str
+    plan2 : str
+    plan3 : str
 
 client = OpenAI(api_key=api_key)
 
@@ -57,7 +63,7 @@ MIXED_RULE = """
 5. 将来展望
 """
 
-@app.post("/structure")
+@app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
     if data.length == 500:
         h2_count = 2
@@ -84,30 +90,22 @@ def structure(data:Input):
         {
             "role": "system",
             "content": (
-                "あなたは大学のレポートの構成を考えるアシスタントです。"
-                "以下のテーマについて、大学レポート用の見出し構成（H1〜H3）と、"
-                "各見出しで書くべき内容を箇条書きで出力してください。\n\n"
-                "出力は以下の形式に厳密に従ってください。\n\n"
-                "# タイトル\n\n"
-                "## H1：見出し\n"
-                "- 書く内容\n"
-                "- 書く内容\n\n"
-                "## H2：見出し\n"
-                "- 書く内容\n\n"
-                "### H3：見出し\n"
-                "- 書く内容\n\n"
-                "説明文や前置きは書かず、構成のみを出力してください。\n\n"
-                "以下のルールを必ず守ってください。\n"
-                "H1 → H2 → H3 の順でのみ出力してください。\n"
-                "H2の中にのみH3を含めてください。\n"
-                "H3の中にH2やH1を含めないでください。\n"
-                "見出し構造を変更・省略しないでください。\n"
-                "指定された見出し記号（#, ##, ###）を必ず使用してください。\n"
-                "フォーマット例を内容で置き換えず、構造として守ってください。"
-                "この見出しフレームの構造・順序・数は絶対に変更しないでください。"
-                + rule
-                + "\n\n"
-                + rule_text
+            "あなたは大学レポートの構成を3つの案で生成するAIです。"
+            "必ず3つそれぞれ**独立した構成**を生成し、"
+            "出力はこの順番で行ってください：\n\n"
+            "【案1】\n【案2】\n【案3】\n\n"
+            "各案ごとにレポート構成を最初から作り直してください。"
+            "（案3だけにまとめて書くのは禁止です）\n\n"
+            "フォーマットは必ず守ってください：\n"
+            "# タイトル\n"
+            "## H1：見出し\n"
+            "- 書く内容\n"
+            "## H2：見出し\n"
+            "- 書く内容\n"
+            "### H3：見出し\n"
+            "- 書く内容\n\n"
+            "それでは開始してください。\n\n"
+            + rule_text
             )
         },
         {
@@ -124,6 +122,13 @@ def structure(data:Input):
         messages = messages
     )
     structuring = response.choices[0].message.content
+    
+    parts= structuring.split("【案")
+    plans= StructureResponse(
+        plan1="【案" + parts[1] if len(parts) > 1 else "生成失敗",
+        plan2="【案" + parts[2] if len(parts) > 2 else "生成失敗",
+        plan3="【案" + parts[3] if len(parts) > 3 else "生成失敗",
+    )
 
     path = Path("structures.json")
     if path.exists():
@@ -133,18 +138,15 @@ def structure(data:Input):
         structures = []
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     new_structure = {
-        "time":timestamp,
-        "text":data.text,
-        "structuring":structuring
+    "time": timestamp,
+    "text": data.text,
+    "plans": [plans.plan1, plans.plan2, plans.plan3]
     }
     structures.append(new_structure)
     with open(path,"w",encoding="utf-8") as f:
         json.dump(structures,f,ensure_ascii=False,indent=2)
         
-    return {
-        "length" : data.length,
-        "structure" : structuring
-    }
+    return plans
 
 @app.get("/")
 def home():
