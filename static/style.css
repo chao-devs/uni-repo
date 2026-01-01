@@ -144,6 +144,7 @@ a {
   select, textarea, button {
     font-size: 15px;
     padding: 10px;
+    height: 50px;
   }
 
   .plan-box {
