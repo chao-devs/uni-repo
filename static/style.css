@@ -134,15 +134,15 @@ a {
   }
 }
 
-/* ===== Mobile layout (< 768px) ===== */
-@media (max-width: 767px) {
+/* ===== Mobile layout (< 670px) ===== */
+@media (max-width: 670px) {
   h1 {
     font-size: 22px;
     padding: 14px;
   }
 
   select, textarea, button {
-    font-size: 15px;
+    font-size: 20px;
     padding: 10px;
     height: 50px;
   }
