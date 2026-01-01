@@ -68,15 +68,15 @@ def structure(data:Input):
     if data.length == 500:
         h2_count = 2
         h3_count = 0
-        rule_text = "H2は2つ作り、H3は使わないでください。簡潔な構成にしてください。"
+        rule_text = f"H2は{h2_count}個作り、H3は絶対に使用しないでください。簡潔な構成にしてください。"
     elif data.length == 1000:
         h2_count = 3
         h3_count = 2
-        rule_text = "H2は3つ作り、各H2にH3を2つずつ含めてください。"
+        rule_text = f"H2は{h2_count}個作り、各H2にH3を{h3_count}個ずつ含めてください。"
     elif data.length == 2000:
         h2_count = 4
         h3_count = 2
-        rule_text = "H2は4つ作り、各H2にH3を2つずつ含めてください。"
+        rule_text = f"H2は{h2_count}個作り、各H2にH3を{h3_count}個ずつ含めてください。"
 
     if data.faculty=="humanities":
         rule = HUMANITIES_RULE
@@ -105,6 +105,8 @@ def structure(data:Input):
             "### H3：見出し\n"
             "- 書く内容\n\n"
             "それでは開始してください。\n\n"
+            + rule
+            + "\n\n"
             + rule_text
             )
         },
