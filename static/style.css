@@ -1,0 +1,157 @@
+/* ===== Base ===== */
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f4faff; /* 薄い青のさらに淡い背景 */
+  color: #1a2a33;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+}
+
+/* ===== Header ===== */
+h1 {
+  background: #cce7ff; /* メインカラー：薄い青 */
+  padding: 16px;
+  font-size: 24px;
+  text-align: center;
+  border-bottom: 3px solid #99d1ff;
+}
+
+/* ===== Form Elements ===== */
+/* ===== Form layout 修正版 ===== */
+label {
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  margin: 0 auto 6px auto; /* 枠との距離を一定に */
+  max-width: 640px;
+}
+
+select, textarea, button {
+  width: 100%;
+  max-width: 640px; /* サイズ統一 */
+  display: block;
+  margin: 0 auto 16px auto;
+  padding: 12px;
+  border: 2px solid #b3dcff;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  box-sizing: border-box; /* これが統一のカギ */
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+
+button {
+  background: #cce7ff;
+  border-color: #99d1ff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #b3dcff;
+}
+
+/* ===== Plan Boxes ===== */
+.plan-box {
+  background: white;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  border-left: 6px solid #99d1ff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.plan-box h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.plan-box pre {
+  background: #f0f8ff;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+
+.plan-title {
+  margin: 0 auto 8px auto;
+  font-size: 20px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 640px; /* フォームと同じ幅で揃える */
+  text-align: left; /* 左寄せで枠の上に置く */
+  box-sizing: border-box;
+}
+
+/* ===== Footer Link ===== */
+a {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 16px;
+  font-size: 20px;
+}
+
+.question p {
+    font-size: 16px;
+}
+
+.question {
+    text-align: center;
+}
+
+/* ===== PC layout (≥ 768px) ===== */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 28px;
+    padding: 20px;
+  }
+
+  select, textarea, button {
+    max-width: 640px;
+    display: block;
+    margin: 0 auto 12px auto;
+  }
+
+  .plan-box {
+    max-width: 700px;
+    margin: 20px auto;
+  }
+
+  .plan-box pre {
+    font-size: 15px;
+  }
+}
+
+/* ===== Mobile layout (< 768px) ===== */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 22px;
+    padding: 14px;
+  }
+
+  select, textarea, button {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .plan-box {
+    margin: 14px;
+    padding: 14px;
+  }
+
+  .plan-box pre {
+    font-size: 13px;
+  }
+}
