@@ -105,16 +105,14 @@ def structure(data:Input):
             "### H3：見出し\n"
             "- 書く内容\n\n"
             "それでは開始してください。\n\n"
-            + rule
-            + "\n\n"
-            + rule_text
             )
         },
         {
             "role": "user",
             "content": (
                 f"課題文:{data.text}\n"
-                f"{rule_text}"
+                f"文字数ルール:{rule_text}\n"
+                f"学部系ルール:{rule}"
             )
         }
     ]
