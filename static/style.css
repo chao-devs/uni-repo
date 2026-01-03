@@ -135,29 +135,3 @@ a {
 }
 
 /* ===== Mobile layout (< 670px) ===== */
-@media (max-width: 670px) {
-  h1 {
-    font-size: 44px;
-    padding: 14px;
-  }
-
-  .Them {
-    height: 100px;
-    width: 500px;
-  }
-
-  select, textarea, button {
-    font-size: 20px;
-    padding: 10px;
-    height: 50px;
-  }
-
-  .plan-box {
-    margin: 14px;
-    padding: 14px;
-  }
-
-  .plan-box pre {
-    font-size: 13px;
-  }
-}
