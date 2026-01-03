@@ -137,8 +137,13 @@ a {
 /* ===== Mobile layout (< 670px) ===== */
 @media (max-width: 670px) {
   h1 {
-    font-size: 22px;
+    font-size: 44px;
     padding: 14px;
+  }
+
+  .Them {
+    height: 100px;
+    width: 500px;
   }
 
   select, textarea, button {
