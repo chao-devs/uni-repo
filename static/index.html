@@ -17,6 +17,8 @@
 <body>
   <h1>ゆにれぽ | レポート構成AI</h1>
 
+  <button id="templateBtn" class="TBtn">テンプレ入力</button><br><br>
+
   <label>学部系（必須）</label><br>
   <select id="faculty" class="Facu">
     <option value="" disabled selected>選択してください</option>
@@ -61,10 +63,38 @@
   </div>
 
   <script>
+    const templateBtn = document.getElementById("templateBtn");
     const generateBtn = document.getElementById("generateBtn");
     const facultySelect = document.getElementById("faculty");
     const themeInput = document.getElementById("theme");
     const lengthSelect = document.getElementById("length");
+
+    templateBtn.addEventListener("click", () => {
+      const humanities = {
+        theme:"SNSの普及が現代の若者の価値観と人間関係に与えた変化について具体例を交えて考察しなさい。",
+        faculty:"humanities",
+        length:"1000"
+      }
+
+      const science = {
+        theme:"再生可能エネルギーの導入拡大における技術的課題と解決の方向性について、発電効率・コスト・環境負荷の観点から考察しなさい。",
+        faculty:"science",
+        length:"2000"
+      }
+
+      const mixed = {
+        theme:"インターネットの発展が、現代の生活・社会・科学技術に与えた影響を整理し、その利点と課題について述べなさい。",
+        faculty:"mixed",
+        length:"500"
+      }
+
+      const templates = [humanities,science,mixed]
+      const rand = Math.floor(Math.random()*templates.length);
+      const t = templates[rand]
+      themeInput.value = t.theme;
+      facultySelect.value = t.faculty;
+      lengthSelect.value = t.length;
+    });
 
     generateBtn.addEventListener("click", async () => {
       const theme = themeInput.value.trim();
