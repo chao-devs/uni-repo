@@ -166,7 +166,7 @@ def converted_structure(text: str) -> str:
     # 3案それぞれを改行で結合
     return "\n".join(plan1_lines + [""] + plan2_lines + [""] + plan3_lines)
 
-@app.post("/structure", response_model=StructureResponse)
+@app.post("/structure", response_model=StructureResponse1)
 def structure(data:Input):
     if data.length == 500:
         h2_count = 2
