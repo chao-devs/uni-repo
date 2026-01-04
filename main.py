@@ -239,7 +239,7 @@ def structure(data:Input):
     with open(path,"w",encoding="utf-8") as f:
         json.dump(structures,f,ensure_ascii=False,indent=2)
         
-    return 
+    return new_plans
 
 @app.get("/")
 def home():
