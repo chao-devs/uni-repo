@@ -53,18 +53,6 @@ generateBtn.addEventListener("click", async () => {
   document.getElementById("plan2").innerText = "生成中...";
   document.getElementById("plan3").innerText = "生成中...";
 
-  for (let i =1; i <= 3; i ++) {
-    let planText;
-    if (i == 1) {
-      planText = plans.plan1
-    } else if (i == 2) {
-      planText = plans.plan2
-    } else {
-      planText = plans.plan3
-    }
-    target.textContent = planText
-  }
-
   try {
     // ローカルでもRenderでも同じ：同一ドメインにPOSTする
     const response = await fetch("/structure", {
