@@ -116,27 +116,7 @@ a {
     text-align: center;
 }
 
-/* ===== PC layout (≥ 768px) ===== */
-@media (min-width: 768px) {
-  h1 {
-    font-size: 28px;
-    padding: 20px;
-  }
-
-  select, textarea, button {
-    max-width: 640px;
-    display: block;
-    margin: 0 auto 12px auto;
-  }
-
-  .plan-box {
-    max-width: 700px;
-    margin: 20px auto;
-  }
-
-  .plan-box pre {
-    font-size: 15px;
-  }
+/*スマホ版のレイアウト*/
+@media (max-width:670px) {
+  
 }
-
-/* ===== Mobile layout (< 670px) ===== */
