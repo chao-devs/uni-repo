@@ -242,8 +242,6 @@ def structure(data:Input):
     )
     structuring = response.choices[0].message.content
 
-    parts= structuring.split("【案")
-
     converted = converted_structure(structuring)
     parts= converted.split("【案")
     new_plans= StructureResponse(
