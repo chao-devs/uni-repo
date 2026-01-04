@@ -115,30 +115,51 @@ def converted_structure(text: str) -> str:
     plan1_lines = []
     plan2_lines = []
     plan3_lines = []
+
+    current_plan = None
     lines = text.splitlines()
 
     for line in lines:
-        if line.strip().startswith("【案1】"):
+        stripped = line.strip()
+
+        # 案の切り替え検知
+        if stripped.startswith("【案1】"):
             plan1_lines.append("【案1】")
             plan1_lines.append("──────")
+            current_plan = 1
             continue
 
-        elif line.strip().startswith("【案2】"):
+        if stripped.startswith("【案2】"):
             plan2_lines.append("【案2】")
             plan2_lines.append("──────")
+            current_plan = 2
             continue
 
-        elif line.strip().startswith("【案3】"):
+        if stripped.startswith("【案3】"):
             plan3_lines.append("【案3】")
             plan3_lines.append("──────")
+            current_plan = 3
             continue
 
-        clean = line.lstrip()
-        clean = clean.replace("#","")
-        clean = clean.replace("-","・")
+        # ここから下は案の中身の行の整形
+        clean = stripped
+        clean = clean.replace("#", "")  # 見出し記号削除
+        clean = clean.replace("-", "・")  # 箇条書きを見やすく
 
-        if clean.startswith(("研究背景・問題提起","用語や概念の整理","主要な議論・論点","批判的考察・課題","結論・示唆")):
+        # 不要な見出しタイトル行をスキップ（中身はスキップしない）
+        if clean in ("研究背景・問題提起","用語や概念の整理","主要な議論・論点","批判的考察・課題","結論・示唆"):
             continue
+
+        # 案ごとのリストに追加
+        if current_plan == 1:
+            plan1_lines.append(clean)
+        elif current_plan == 2:
+            plan2_lines.append(clean)
+        elif current_plan == 3:
+            plan3_lines.append(clean)
+
+    # 3案それぞれを改行で結合
+    return "\n".join(plan1_lines + [""] + plan2_lines + [""] + plan3_lines)
 
 
     plan1_text = "\n".join(plan1_lines)
