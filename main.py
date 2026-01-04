@@ -29,15 +29,10 @@ class Input(BaseModel):
     length : int
     faculty : str
 
-class StructureResponse1(BaseModel):
+class StructureResponse(BaseModel):
     plan1 : str
     plan2 : str
     plan3 : str
-
-class StructureResponse2(BaseModel):
-    plan4 : str
-    plan5 : str
-    plan6 : str
 
 client = OpenAI(api_key=api_key)
 
@@ -166,7 +161,7 @@ def converted_structure(text: str) -> str:
     # 3案それぞれを改行で結合
     return "\n".join(plan1_lines + [""] + plan2_lines + [""] + plan3_lines)
 
-@app.post("/structure", response_model=StructureResponse1)
+@app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
     if data.length == 500:
         h2_count = 2
@@ -225,10 +220,9 @@ def structure(data:Input):
         messages = messages
     )
     structuring = response.choices[0].message.content
-    print(structuring)
 
     parts= structuring.split("【案")
-    plans= StructureResponse1(
+    plans= StructureResponse(
         plan1 ="【案" + parts[1] if len(parts) > 1 else "生成失敗",
         plan2 ="【案" + parts[2] if len(parts) > 2 else "生成失敗",
         plan3 ="【案" + parts[3] if len(parts) > 3 else "生成失敗",
@@ -237,10 +231,10 @@ def structure(data:Input):
     structure_text = "\n".join([plans.plan1,plans.plan2,plans.plan3])
     converted = converted_structure(structure_text)
     parts= converted.split("【案")
-    new_plans= StructureResponse2(
-        plan4="【案" + parts[1] if len(parts) > 1 else "生成失敗",
-        plan5="【案" + parts[2] if len(parts) > 2 else "生成失敗",
-        plan6="【案" + parts[3] if len(parts) > 3 else "生成失敗",
+    new_plans= StructureResponse(
+        plan1="【案" + parts[1] if len(parts) > 1 else "生成失敗",
+        plan2="【案" + parts[2] if len(parts) > 2 else "生成失敗",
+        plan3="【案" + parts[3] if len(parts) > 3 else "生成失敗",
     )
 
     path = Path("structures.json")

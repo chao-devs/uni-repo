@@ -42,9 +42,9 @@ generateBtn.addEventListener("click", async () => {
     return;
   }
 
-  document.getElementById("plan4").innerText = "生成中...";
-  document.getElementById("plan5").innerText = "生成中...";
-  document.getElementById("plan6").innerText = "生成中...";
+  document.getElementById("plan1").innerText = "生成中...";
+  document.getElementById("plan2").innerText = "生成中...";
+  document.getElementById("plan3").innerText = "生成中...";
 
   try {
     // ローカルでもRenderでも同じ：同一ドメインにPOSTする
@@ -61,13 +61,13 @@ generateBtn.addEventListener("click", async () => {
 
     const data = await response.json();
 
-    document.getElementById("plan4").innerText = data.plan1 ?? "生成失敗";
-    document.getElementById("plan5").innerText = data.plan2 ?? "生成失敗";
-    document.getElementById("plan6").innerText = data.plan3 ?? "生成失敗";
+    document.getElementById("plan1").innerText = data.plan1 ?? "生成失敗";
+    document.getElementById("plan2").innerText = data.plan2 ?? "生成失敗";
+    document.getElementById("plan3").innerText = data.plan3 ?? "生成失敗";
 
   } catch (e) {
-    document.getElementById("plan4").innerText = "エラー: " + e;
-    document.getElementById("plan5").innerText = "エラー";
-    document.getElementById("plan6").innerText = "エラー";
+    document.getElementById("plan1").innerText = "エラー: " + e;
+    document.getElementById("plan2").innerText = "エラー";
+    document.getElementById("plan3").innerText = "エラー";
   }
 });
