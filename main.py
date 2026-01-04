@@ -239,7 +239,7 @@ def structure(data:Input):
     new_structure = {
     "time": timestamp,
     "text": data.text,
-    "plans": [new_plans.plan4, new_plans.plan5, new_plans.plan6]
+    "plans": [new_plans.plan1, new_plans.plan2, new_plans.plan3]
     }
     structures.append(new_structure)
     with open(path,"w",encoding="utf-8") as f:
