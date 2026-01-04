@@ -221,15 +221,7 @@ def structure(data:Input):
     )
     structuring = response.choices[0].message.content
 
-    parts= structuring.split("【案")
-    plans= StructureResponse(
-        plan1 ="【案" + parts[1] if len(parts) > 1 else "生成失敗",
-        plan2 ="【案" + parts[2] if len(parts) > 2 else "生成失敗",
-        plan3 ="【案" + parts[3] if len(parts) > 3 else "生成失敗",
-    )
-
-    structure_text = "\n".join([plans.plan1,plans.plan2,plans.plan3])
-    converted = converted_structure(structure_text)
+    converted = converted_structure(structuring)
     parts= converted.split("【案")
     new_plans= StructureResponse(
         plan1="【案" + parts[1] if len(parts) > 1 else "生成失敗",
