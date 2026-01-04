@@ -160,7 +160,8 @@ def structure(data:Input):
             "content": (
                 f"課題文:{data.text}\n"
                 f"文字数ルール:{rule_text}\n"
-                f"学部系ルール:{rule}"
+                f"学部系ルール:{rule}\n"
+                "上記のルールは絶対に守りなさい。"
             )
         }
     ]
