@@ -3,6 +3,13 @@ const generateBtn = document.getElementById("generateBtn");
 const facultySelect = document.getElementById("faculty");
 const themeInput = document.getElementById("theme");
 const lengthSelect = document.getElementById("length");
+const plan1 = document.getElementById("plan1");
+const plan2 = document.getElementById("plan2");
+const plan3 = document.getElementById("plan3");
+const plans = { plan1, plan2, plan3 } ;
+const results = document.getElementById("results");
+const target = document.getElementById("plan" + i);
+const plan_box = document.getElementById("plan_box");
 
 templateBtn.addEventListener("click", () => {
   const humanities = {
@@ -45,6 +52,18 @@ generateBtn.addEventListener("click", async () => {
   document.getElementById("plan1").innerText = "生成中...";
   document.getElementById("plan2").innerText = "生成中...";
   document.getElementById("plan3").innerText = "生成中...";
+
+  for (let i =1; i <= 3; i ++) {
+    let planText;
+    if (i == 1) {
+      planText = plans.plan1
+    } else if (i == 2) {
+      planText = plans.plan2
+    } else {
+      planText = plans.plan3
+    }
+    target.textContent = planText
+  }
 
   try {
     // ローカルでもRenderでも同じ：同一ドメインにPOSTする

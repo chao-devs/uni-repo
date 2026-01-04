@@ -178,6 +178,7 @@ def structure(data:Input):
         plan3="【案" + parts[3] if len(parts) > 3 else "生成失敗",
     )
 
+
     path = Path("structures.json")
     if path.exists():
         with open(path,"r",encoding="utf-8") as f:
