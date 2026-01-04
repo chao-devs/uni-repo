@@ -42,9 +42,9 @@ generateBtn.addEventListener("click", async () => {
     return;
   }
 
-  document.getElementById("plan1").innerText = "生成中...";
-  document.getElementById("plan2").innerText = "生成中...";
-  document.getElementById("plan3").innerText = "生成中...";
+  document.getElementById("plan4").innerText = "生成中...";
+  document.getElementById("plan5").innerText = "生成中...";
+  document.getElementById("plan6").innerText = "生成中...";
 
   try {
     // ローカルでもRenderでも同じ：同一ドメインにPOSTする
