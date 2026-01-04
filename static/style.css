@@ -70,7 +70,7 @@ button:hover {
 /* ===== Plan Boxes ===== */
 .plan-box {
   background: white;
-  margin: 16px;
+  margin: 40px 180px;
   padding: 16px;
   border-radius: 12px;
   border-left: 6px solid #99d1ff;
@@ -91,13 +91,12 @@ button:hover {
 }
 
 .plan-title {
-  margin: 0 auto 8px auto;
   font-size: 20px;
   font-weight: 700;
-  width: 100%;
-  max-width: 640px; /* フォームと同じ幅で揃える */
-  text-align: left; /* 左寄せで枠の上に置く */
+  text-align: left; 
   box-sizing: border-box;
+  padding-top: 30px;
+  margin: 0 200px;
 }
 
 /* ===== Footer Link ===== */
@@ -177,7 +176,12 @@ a {
     display: initial;
   }
 
+  .plan-box {
+    margin: 20px; 
+  }
+
   .plan-title {
+    margin: 0;
     text-align: center;
     padding-top: 20px;
     font-weight: 650;
