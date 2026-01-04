@@ -222,7 +222,7 @@ def converted_structure(text: str) -> str:
     lines = text.splitlines()
 
     current_plan = 0
-
+    prev_indent = 0
     for line in lines:
 
         current_indent = len(line) - len(line.lstrip(" "))
