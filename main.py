@@ -161,7 +161,6 @@ def structure(data:Input):
                 f"課題文:{data.text}\n"
                 f"文字数ルール:{rule_text}\n"
                 f"学部系ルール:{rule}\n"
-                "H1とH2のタイトルは案ごとに必ず変えなさい。"
             )
         }
     ]
