@@ -3,8 +3,8 @@ body {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
-  background: #f4faff; /* 薄い青のさらに淡い背景 */
+  line-height: 1.2;
+  background: #fbfdfe; /* 薄い青のさらに淡い背景 */
   color: #1a2a33;
 }
 
@@ -27,15 +27,15 @@ label {
   font-weight: 600;
   font-size: 16px;
   display: block;
-  margin: 0 auto 6px auto; /* 枠との距離を一定に */
   max-width: 640px;
+  margin: 0 auto;
 }
 
 select, textarea, button {
   width: 100%;
-  max-width: 640px; /* サイズ統一 */
+  margin: 0 auto;
   display: block;
-  margin: 0 auto 16px auto;
+  max-width: 640px; /* サイズ統一 */
   padding: 12px;
   border: 2px solid #b3dcff;
   border-radius: 8px;
@@ -118,5 +118,68 @@ a {
 
 /*スマホ版のレイアウト*/
 @media (max-width:670px) {
+  h1 {
+    color:#515e66;
+    background: hsl(210, 80%, 96%); /* メインカラー：薄い青 */
+    height: 20px;
+    padding: 12px;
+    font-size: 18px;
+    border-bottom: 3px solid #e8f4fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .TBtn,.GBtn {
+    margin: 0 auto;
+    display: flex;
+    
+    /*この3つを使うことでボタンのちょうどど真ん中に「テンプレ入力」を移動させることができる*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+
+  .TBtn {
+    background: #f2f8fd;
+    border-color: #d0eaff;
+    width: 110px;
+    height: 25px;
+    font-size: 13px;
+  }
+
+  .GBtn {
+    background: #e4f1fd;
+    border-color: #a5cff1;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .form-group {
+    width: 300px; 
+    margin: 0 auto;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  label,select,textarea {
+    width: 300px;
+    margin: 0 auto;
+  }
   
+  label,select,textarea,button {
+    display: initial;
+  }
+
+  .plan-title {
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 650;
+  }
 }

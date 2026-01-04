@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <title>ゆにれぽ</title>
   <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DE4DZKZ783"></script>
   <script>
@@ -17,28 +19,34 @@
 <body>
   <h1>ゆにれぽ | レポート構成AI</h1>
 
-  <button id="templateBtn" class="TBtn">テンプレ入力</button><br><br>
+  <button id="templateBtn" class="TBtn"><span class="TBtn_p">テンプレ入力</span></button><br><br>
 
-  <label>学部系（必須）</label><br>
-  <select id="faculty" class="Facu">
-    <option value="" disabled selected>選択してください</option>
-    <option value="humanities">文系</option>
-    <option value="science">理系</option>
-    <option value="mixed">文理融合系</option>
-  </select>
+  <div class="form-group">
+    <label>学部系（必須）</label><br>
+    <select id="faculty" class="Facu">
+      <option value="" disabled selected>選択してください</option>
+      <option value="humanities">文系</option>
+      <option value="science">理系</option>
+      <option value="mixed">文理融合系</option>
+    </select>
+  </div>
   <br><br>
 
-  <label>課題文（必須）</label><br>
-  <textarea id="theme" placeholder="レポートの課題文を入力してください" class="Them"></textarea>
+  <div class="form-group">
+    <label>課題文（必須）</label><br>
+    <textarea id="theme" placeholder="レポートの課題文を入力してください" class="Them"></textarea>
+  </div>
   <br><br>
 
-  <label>文字数（必須）</label><br>
-  <select id="length" class="Leng">
-    <option value="" disabled selected>選択してください</option>
-    <option value="500">500</option>
-    <option value="1000">1000</option>
-    <option value="2000">2000</option>
-  </select>
+  <div class="form-group">
+    <label>文字数（必須）</label><br>
+    <select id="length" class="Leng">
+      <option value="" disabled selected>選択してください</option>
+      <option value="500">500</option>
+      <option value="1000">1000</option>
+      <option value="2000">2000</option>
+    </select>
+  </div>
 
   <br><br>
   <button id="generateBtn" class="GBtn">構成を生成する</button>
