@@ -30,6 +30,11 @@ class Input(BaseModel):
     faculty : str
 
 class StructureResponse(BaseModel):
+    plan1 : str
+    plan2 : str
+    plan3 : str
+
+class StructureResponse(BaseModel):
     plan4 : str
     plan5 : str
     plan6 : str
@@ -160,13 +165,6 @@ def converted_structure(text: str) -> str:
 
     # 3案それぞれを改行で結合
     return "\n".join(plan1_lines + [""] + plan2_lines + [""] + plan3_lines)
-
-
-    plan1_text = "\n".join(plan1_lines)
-    plan2_text = "\n".join(plan2_lines)
-    plan3_text = "\n".join(plan3_lines)
-
-    return plan1_text+"\n"+plan2_text+"\n"+plan3_text
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
