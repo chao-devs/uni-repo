@@ -44,6 +44,10 @@ select, textarea, button {
   box-sizing: border-box; /* これが統一のカギ */
 }
 
+.GBtn:active {
+  color: #81b4e0
+}
+
 textarea {
   min-height: 120px;
   resize: vertical;
