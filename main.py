@@ -29,12 +29,12 @@ class Input(BaseModel):
     length : int
     faculty : str
 
-class StructureResponse(BaseModel):
+class StructureResponse1(BaseModel):
     plan1 : str
     plan2 : str
     plan3 : str
 
-class StructureResponse(BaseModel):
+class StructureResponse2(BaseModel):
     plan4 : str
     plan5 : str
     plan6 : str
@@ -225,18 +225,19 @@ def structure(data:Input):
         messages = messages
     )
     structuring = response.choices[0].message.content
-    
+    print(structuring)
+
     parts= structuring.split("【案")
-    plans= StructureResponse(
-        plan1="【案" + parts[1] if len(parts) > 1 else "生成失敗",
-        plan2="【案" + parts[2] if len(parts) > 2 else "生成失敗",
-        plan3="【案" + parts[3] if len(parts) > 3 else "生成失敗",
+    plans= StructureResponse1(
+        plan1 ="【案" + parts[1] if len(parts) > 1 else "生成失敗",
+        plan2 ="【案" + parts[2] if len(parts) > 2 else "生成失敗",
+        plan3 ="【案" + parts[3] if len(parts) > 3 else "生成失敗",
     )
 
     structure_text = "\n".join([plans.plan1,plans.plan2,plans.plan3])
     converted = converted_structure(structure_text)
     parts= converted.split("【案")
-    new_plans= StructureResponse(
+    new_plans= StructureResponse2(
         plan4="【案" + parts[1] if len(parts) > 1 else "生成失敗",
         plan5="【案" + parts[2] if len(parts) > 2 else "生成失敗",
         plan6="【案" + parts[3] if len(parts) > 3 else "生成失敗",
