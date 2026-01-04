@@ -111,56 +111,6 @@ MIXED_RULE = ["""
 
 mixed_selected = random.choice(MIXED_RULE)
 
-def converted_structure(text: str) -> str:
-    plan1_lines = []
-    plan2_lines = []
-    plan3_lines = []
-
-    current_plan = None
-    lines = text.splitlines()
-
-    for line in lines:
-        stripped = line.strip()
-
-        # 案の切り替え検知
-        if stripped.startswith("【案1】"):
-            plan1_lines.append("【案1】")
-            plan1_lines.append("──────")
-            current_plan = 1
-            continue
-
-        if stripped.startswith("【案2】"):
-            plan2_lines.append("【案2】")
-            plan2_lines.append("──────")
-            current_plan = 2
-            continue
-
-        if stripped.startswith("【案3】"):
-            plan3_lines.append("【案3】")
-            plan3_lines.append("──────")
-            current_plan = 3
-            continue
-
-        # ここから下は案の中身の行の整形
-        clean = stripped
-        clean = clean.replace("#", "")  # 見出し記号削除
-        clean = clean.replace("-", "・")  # 箇条書きを見やすく
-
-        # 不要な見出しタイトル行をスキップ（中身はスキップしない）
-        if clean in ("研究背景・問題提起","用語や概念の整理","主要な議論・論点","批判的考察・課題","結論・示唆"):
-            continue
-
-        # 案ごとのリストに追加
-        if current_plan == 1:
-            plan1_lines.append(clean)
-        elif current_plan == 2:
-            plan2_lines.append(clean)
-        elif current_plan == 3:
-            plan3_lines.append(clean)
-
-    # 3案それぞれを改行で結合
-    return "\n".join(plan1_lines + [""] + plan2_lines + [""] + plan3_lines)
-
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
     if data.length == 500:
@@ -201,15 +151,17 @@ def structure(data:Input):
                 "H1はレポート全体のタイトル級論点。"
                 "H2は章の論点。"
                 "H3はその章の中の小論点。"
-                "H2とH3で同じ内容・意味の見出しを重複させるのは禁止です。\n\n"
+                "H2とH3で同じ内容・意味の見出しを重複させるのは禁止です。"
+                "生成した構成を見やすくするため、H1、H2、H3の各見出しの前にはインデントを入れてください。"
+                "H1のインデント数は1個、H2のインデント数は2個、H3のインデント数は3個です。\n\n"
 
                 "フォーマットは必ず以下を厳守してください：\n"
-                "# タイトル（テーマを一文で表す）\n"
-                "## H1：見出し（全体論点）\n"
+                "タイトル（テーマを一文で表す）\n"
+                "H1：見出し（全体論点）\n"
                 "- 要点（書き始められる具体的な粒度で箇条書き3〜5行）\n\n"
-                "## H2：見出し（章の論点）\n"
+                "H2：見出し（章の論点）\n"
                 "- 要点（箇条書き2〜5行）\n"
-                "### H3：見出し（小論点）\n"
+                "H3：見出し（小論点）\n"
                 "- 要点（1〜3行）\n\n"
 
                 "それでは開始してください。"
@@ -230,10 +182,8 @@ def structure(data:Input):
         messages = messages
     )
     structuring = response.choices[0].message.content
-
-    converted = converted_structure(structuring)
-    parts= converted.split("【案")
-    new_plans= StructureResponse(
+    parts= structuring.split("【案")
+    plans= StructureResponse(
         plan1="【案" + parts[1] if len(parts) > 1 else "生成失敗",
         plan2="【案" + parts[2] if len(parts) > 2 else "生成失敗",
         plan3="【案" + parts[3] if len(parts) > 3 else "生成失敗",
@@ -249,13 +199,13 @@ def structure(data:Input):
     new_structure = {
     "time": timestamp,
     "text": data.text,
-    "plans": [new_plans.plan1, new_plans.plan2, new_plans.plan3]
+    "plans": [plans.plan1, plans.plan2, plans.plan3]
     }
     structures.append(new_structure)
     with open(path,"w",encoding="utf-8") as f:
         json.dump(structures,f,ensure_ascii=False,indent=2)
         
-    return new_plans
+    return plans
 
 @app.get("/")
 def home():
