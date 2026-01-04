@@ -30,9 +30,9 @@ class Input(BaseModel):
     faculty : str
 
 class StructureResponse(BaseModel):
-    plan1 : str
-    plan2 : str
-    plan3 : str
+    plan4 : str
+    plan5 : str
+    plan6 : str
 
 client = OpenAI(api_key=api_key)
 
