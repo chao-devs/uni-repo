@@ -182,4 +182,12 @@ a {
     padding-top: 20px;
     font-weight: 650;
   }
+
+  .question_form {
+    font-size: 17px;
+  }
+
+  .question p {
+    font-size: 14spx;
+  }
 }
