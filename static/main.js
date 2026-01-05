@@ -3,7 +3,6 @@ const generateBtn = document.getElementById("generateBtn");
 const facultySelect = document.getElementById("faculty");
 const themeInput = document.getElementById("theme");
 const lengthSelect = document.getElementById("length");
-const regMsg = document.getElementById("regMsg")
 
 templateBtn.addEventListener("click", () => {
   const humanities = {
@@ -71,15 +70,4 @@ generateBtn.addEventListener("click", async () => {
     document.getElementById("plan2").innerText = "エラー";
     document.getElementById("plan3").innerText = "エラー";
   }
-});
-
-const questionBtn = document.getElementById("questionBtn");
-questionBtn.addEventListener("click", () => {
-  fetch("/clicklog", { method: "POST" })
-    .then(() => {
-      document.getElementById("regMsg").innerText = "仮登録しました！特典は後日公開ページからDLできます";
-      localStorage.setItem("preregistered", "true");
-      alert("クリック記録＋仮登録完了！");
-    })
-    .catch(() => alert("クリック通信に失敗"));
 });
