@@ -79,6 +79,11 @@ questionBtn.addEventListener("click", () => {
   const msgPlace = document.getElementById("regMsg");
   msgPlace.innerText = reg_text;
   form.style.display = "block";
+  
+  fetch("/api/clicklog",{
+    method: "POST"
+  })
+  fetch.then(res => res.json()).then(j => console.log(j.clicks))
 });
 
 const regName = document.getElementById("regName");

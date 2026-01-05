@@ -38,6 +38,9 @@ class PreReg(BaseModel):
     name : str
     email : str
 
+class click_amount(BaseModel):
+    click : int
+
 client = OpenAI(api_key=api_key)
 
 HUMANITIES_RULE = ["""
@@ -126,6 +129,14 @@ def preregister(data: PreReg):
     with open("prereg.json", "w") as f:
         f.write(json.dumps(db, ensure_ascii=False, indent=2))
     return {"status": "ok"}
+
+
+@app.post("/api/clicklog")
+def clicklog(data: click_amount):
+    with open("click.json","w") as f:
+        click_sum = json.load(f)
+    return {"clicks": click_sum["clicks"]}
+
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
