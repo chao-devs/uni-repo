@@ -10,6 +10,10 @@ body {
 
 .prereg_form {
   border-bottom: 1px solid #1b94ff;
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-right: 150px;
+  float: right;
 }
 
 header button {
@@ -22,7 +26,7 @@ h1, h2, h3 {
 
 /* ===== Header ===== */
 h1 {
-  background: #cce7ff; /* メインカラー：薄い青 */
+  background: hsl(210, 80%, 96%);
   padding: 16px;
   font-size: 24px;
   text-align: center;
@@ -62,10 +66,17 @@ textarea {
   resize: vertical;
 }
 
+.TBtn {
+  background: #f2f8fd;
+  border-color: #d0eaff;
+}
+
+.GBtn {
+  background: #e4f1fd;
+  border-color: #a5cff1;
+}
 
 button {
-  background: #cce7ff;
-  border-color: #99d1ff;
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s;
@@ -149,16 +160,12 @@ a {
   }
 
   .TBtn {
-    background: #f2f8fd;
-    border-color: #d0eaff;
     width: 110px;
     height: 25px;
     font-size: 13px;
   }
 
   .GBtn {
-    background: #e4f1fd;
-    border-color: #a5cff1;
     width: 150px;
     height: 40px;
     font-size: 15px;
