@@ -73,11 +73,21 @@ generateBtn.addEventListener("click", async () => {
   }
 });
 
-const buttons = document.querySelectorAll(".prereBtn")
-buttons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    let reg_text = "仮登録しました！メール入力で本登録・特典GET";
-    const msgPlace = document.getElementById("regMsg");
-    msgPlace.innerText = reg_text;
-  });
+const questionBtn = document.getElementById("questionBtn");
+questionBtn.addEventListener("click", () => {
+  let reg_text = "仮登録しました！メール入力で本登録・特典GET";
+  const msgPlace = document.getElementById("regMsg");
+  msgPlace.innerText = reg_text;
 });
+
+const regName = document.getElementById("regName");
+const regEmail = document.getElementById("regEmail");
+document.getElementById("regForm").style.display = "block"
+regForm.addEventListener("submit",(e) => {
+  e.preventDefault()
+  const user_data = {name: regName.value, email: regEmail.value};
+  fetch("/api/preregister",{
+    method: "POST",
+    body : JSON.stringify(user_data)
+  })
+})

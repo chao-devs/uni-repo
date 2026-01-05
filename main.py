@@ -34,6 +34,10 @@ class StructureResponse(BaseModel):
     plan2 : str
     plan3 : str
 
+class PreReg(BaseModel):
+    name : str
+    email : str
+
 client = OpenAI(api_key=api_key)
 
 HUMANITIES_RULE = ["""
@@ -110,6 +114,18 @@ MIXED_RULE = ["""
 """]
 
 mixed_selected = random.choice(MIXED_RULE)
+
+@app.post("/api/preregister")
+def preregister(data: PreReg):
+    if not os.path.exists("prereg.json"):
+        with open("prereg.json","w") as f:
+            f.write(json.dumps({"users": []}))
+    with open("prereg.json", "r") as f:
+        db = json.loads(f.read())
+    db["users"].append(data.dict())
+    with open("prereg.json", "w") as f:
+        f.write(json.dumps(db, ensure_ascii=False, indent=2))
+    return {"status": "ok"}
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):

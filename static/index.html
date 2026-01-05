@@ -18,9 +18,16 @@
 </head>
 <body>
   <header>
-    <button class="question_button prereBtn">先行登録して要約機能を最短でゲットしよう（初回月500円）</button>
+    <button id="questionBtn">先行登録して要約機能を最短でゲットしよう（初回月500円）</button>
     <h1>ゆにれぽ | レポート構成AI</h1>
   </header>
+
+  <form id="regForm" style="display:none">
+    <input id="regName" type="text" placeholder="名前">
+    <input id="regEmail" type="email" placeholder="メール">
+    <button type="submit">登録</button>
+  </form>
+  <p id="regMsg"></p>
 
   <button id="templateBtn" class="TBtn"><span class="TBtn_p">テンプレ入力</span></button><br><br>
 
@@ -76,8 +83,5 @@
   <script src="/static/main.js"></script>
 
   <hr style="margin:24px 0; border:none; border-top:1px dashed #e5e7eb;">
-
-  <p id="regMsg"></p>
-  <button class="question_button prereBtn">先行登録してね</button>
 </body>
 </html>
