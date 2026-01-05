@@ -116,11 +116,11 @@ MIXED_RULE = ["""
 mixed_selected = random.choice(MIXED_RULE)
 
 @app.post("/api/clicklog")
-def clicklog(self):
+def clicklog():
     with open("click.json","r") as f:
         db = json.loads(f.read())
     db["clicks"] += 1
-    with open("clicks.json","w") as f:
+    with open("click.json","w") as f:
         f.write(json.dumps(db,ensure_ascii=False,indent=2))
     return {"status":"ok"}
 
