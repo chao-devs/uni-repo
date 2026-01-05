@@ -38,9 +38,6 @@ class PreReg(BaseModel):
     name : str
     email : str
 
-class click_amount(BaseModel):
-    click : int
-
 client = OpenAI(api_key=api_key)
 
 HUMANITIES_RULE = ["""
@@ -119,12 +116,12 @@ MIXED_RULE = ["""
 mixed_selected = random.choice(MIXED_RULE)
 
 @app.post("/api/clicklog")
-def clicklog(data: click_amount):
+def clicklog(self):
     with open("click.json","r") as f:
-        db = (json.load(f.read()))
+        db = json.loads(f.read())
     db["clicks"] += 1
     with open("clicks.json","w") as f:
-        f.write(json.dump(db,ensure_ascii=False,indent=2))
+        f.write(json.dumps(db,ensure_ascii=False,indent=2))
     return {"status":"ok"}
 
 
