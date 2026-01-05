@@ -82,12 +82,16 @@ questionBtn.addEventListener("click", () => {
 
 const regName = document.getElementById("regName");
 const regEmail = document.getElementById("regEmail");
-document.getElementById("regForm").style.display = "block"
+const regForm = document.getElementById("regForm")
 regForm.addEventListener("submit",(e) => {
   e.preventDefault()
-  const user_data = {name: regName.value, email: regEmail.value};
+  const user_data = {
+    name: regName.value, 
+    email: regEmail.value
+  }
   fetch("/api/preregister",{
     method: "POST",
     body : JSON.stringify(user_data)
   })
+  .then(() => alert("登録できた！"))
 })
