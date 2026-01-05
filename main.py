@@ -117,6 +117,10 @@ mixed_selected = random.choice(MIXED_RULE)
 
 @app.post("/api/clicklog")
 def clicklog():
+    if not os.path.exists("clicks.json"):
+        with open("clicks.json","w",encoding="utf-8") as f:
+            f.write(json.dumps({"clicks": 0}))
+    
     with open("click.json","r") as f:
         db = json.loads(f.read())
     db["clicks"] += 1
