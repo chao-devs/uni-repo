@@ -118,24 +118,14 @@ MIXED_RULE = ["""
 
 mixed_selected = random.choice(MIXED_RULE)
 
-@app.post("/api/preregister")
-def preregister(data: PreReg):
-    if not os.path.exists("prereg.json"):
-        with open("prereg.json","w") as f:
-            f.write(json.dumps({"users": []}))
-    with open("prereg.json", "r") as f:
-        db = json.loads(f.read())
-    db["users"].append(data.dict())
-    with open("prereg.json", "w") as f:
-        f.write(json.dumps(db, ensure_ascii=False, indent=2))
-    return {"status": "ok"}
-
-
 @app.post("/api/clicklog")
 def clicklog(data: click_amount):
-    with open("click.json","w") as f:
-        click_sum = json.load(f)
-    return {"clicks": click_sum["clicks"]}
+    with open("click.json","r") as f:
+        db = (json.load(f.read()))
+    db["clicks"] += 1
+    with open("clicks.json","w") as f:
+        f.write(json.dump(db,ensure_ascii=False,indent=2))
+    return {"status":"ok"}
 
 
 @app.post("/structure", response_model=StructureResponse)

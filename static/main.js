@@ -75,29 +75,11 @@ generateBtn.addEventListener("click", async () => {
 
 const questionBtn = document.getElementById("questionBtn");
 questionBtn.addEventListener("click", () => {
-  let reg_text = "仮登録しました！メール入力で本登録・特典GET";
-  const msgPlace = document.getElementById("regMsg");
-  msgPlace.innerText = reg_text;
-  form.style.display = "block";
-  
-  fetch("/api/clicklog",{
-    method: "POST"
-  })
-  fetch.then(res => res.json()).then(j => console.log(j.clicks))
+  fetch("/api/clicklog", { method: "POST" })
+    .then(() => {
+      document.getElementById("regMsg").innerText = "仮登録しました！特典は後日公開ページからDLできます";
+      localStorage.setItem("preregistered", "true");
+      alert("クリック記録＋仮登録完了！");
+    })
+    .catch(() => alert("クリック通信に失敗"));
 });
-
-const regName = document.getElementById("regName");
-const regEmail = document.getElementById("regEmail");
-const regForm = document.getElementById("regForm")
-regForm.addEventListener("submit",(e) => {
-  e.preventDefault()
-  const user_data = {
-    name: regName.value, 
-    email: regEmail.value
-  }
-  fetch("/api/preregister",{
-    method: "POST",
-    body : JSON.stringify(user_data)
-  })
-  .then(() => alert("登録できた！"))
-})
