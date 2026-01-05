@@ -1,8 +1,10 @@
 const templateBtn = document.getElementById("templateBtn");
 const generateBtn = document.getElementById("generateBtn");
+const questionBtn = document.getElementById("questionBtn")
 const facultySelect = document.getElementById("faculty");
 const themeInput = document.getElementById("theme");
 const lengthSelect = document.getElementById("length");
+const regMes = document.getElementById("regMes")
 
 templateBtn.addEventListener("click", () => {
   const humanities = {
@@ -69,5 +71,13 @@ generateBtn.addEventListener("click", async () => {
     document.getElementById("plan1").innerText = "エラー: " + e;
     document.getElementById("plan2").innerText = "エラー";
     document.getElementById("plan3").innerText = "エラー";
+  }
+});
+
+questionBtn.addEventListener("click", () => {
+  try {
+    console.log("仮登録しました！メール入力で本登録・特典GET");
+  } catch {
+    console.log("エラーが発生しました。前ページに戻ってください。")
   }
 });
