@@ -117,13 +117,12 @@ mixed_selected = random.choice(MIXED_RULE)
 
 @app.post("/api/clicklog")
 def clicklog():
-    print("CLICK +1")  # ← クリックの度にターミナルに記録される
+    with open("click.json","r") as f:
+        db = json.loads(f.read())
+    db["clicks"] += 1
+    with open("click.json","w") as f:
+        f.write(json.dumps(db,ensure_ascii=False,indent=2))
     return {"status":"ok"}
-
-@app.get("/api/debug-files")
-def debug_files():
-    files = os.listdir(".")
-    return {"files": files}
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
