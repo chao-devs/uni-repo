@@ -116,18 +116,8 @@ MIXED_RULE = ["""
 mixed_selected = random.choice(MIXED_RULE)
 
 @app.post("/api/clicklog")
-def clicklog():
-    path = Path("click.json")
-    if not os.path.exists():
-        with open(path,"w",encoding="utf-8") as f:
-            f.write(json.dumps({"clicks": 0}))
-    
-    with open(path,"r") as f:
-        db = json.loads(f.read())
-    db["clicks"] += 1
-    with open(path,"w") as f:
-        f.write(json.dumps(db,ensure_ascii=False,indent=2))
-    return {"status":"ok","clicks": db["clicks"]}
+def data_click():
+    return "ないす"
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
