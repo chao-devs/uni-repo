@@ -115,7 +115,7 @@ MIXED_RULE = ["""
 
 mixed_selected = random.choice(MIXED_RULE)
 
-@app.post("/api/clicklog")
+@app.post("/clicklog")
 def data_click():
     path = Path("click.json")
     if not os.path.exists(path):

@@ -75,7 +75,7 @@ generateBtn.addEventListener("click", async () => {
 
 const questionBtn = document.getElementById("questionBtn");
 questionBtn.addEventListener("click", () => {
-  fetch("/api/clicklog", { method: "POST" })
+  fetch("/clicklog", { method: "POST" })
     .then(() => {
       document.getElementById("regMsg").innerText = "仮登録しました！特典は後日公開ページからDLできます";
       localStorage.setItem("preregistered", "true");
