@@ -4,7 +4,7 @@ const questionBtn = document.getElementById("questionBtn")
 const facultySelect = document.getElementById("faculty");
 const themeInput = document.getElementById("theme");
 const lengthSelect = document.getElementById("length");
-const regMes = document.getElementById("regMes")
+const regMsg = document.getElementById("regMsg")
 
 templateBtn.addEventListener("click", () => {
   const humanities = {
@@ -78,5 +78,4 @@ questionBtn.addEventListener("click", () => {
   let reg_text = "仮登録しました！メール入力で本登録・特典GET";
   const msgPlace = document.getElementById("regMsg");
   msgPlace.innerText = reg_text;
-
 });
