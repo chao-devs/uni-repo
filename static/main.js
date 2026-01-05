@@ -74,8 +74,11 @@ generateBtn.addEventListener("click", async () => {
   }
 });
 
-questionBtn.addEventListener("click", () => {
-  let reg_text = "仮登録しました！メール入力で本登録・特典GET";
-  const msgPlace = document.getElementById("regMsg");
-  msgPlace.innerText = reg_text;
+const buttons = document.querySelectorAll(".prereBtn")
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    let reg_text = "仮登録しました！メール入力で本登録・特典GET";
+    const msgPlace = document.getElementById("regMsg");
+    msgPlace.innerText = reg_text;
+  });
 });
