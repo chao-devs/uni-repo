@@ -8,6 +8,10 @@ body {
   color: #1a2a33;
 }
 
+header button {
+  float: right;
+}
+
 h1, h2, h3 {
   margin-top: 0;
 }
