@@ -1,6 +1,5 @@
 const templateBtn = document.getElementById("templateBtn");
 const generateBtn = document.getElementById("generateBtn");
-const questionBtn = document.getElementById("questionBtn")
 const facultySelect = document.getElementById("faculty");
 const themeInput = document.getElementById("theme");
 const lengthSelect = document.getElementById("length");
