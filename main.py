@@ -122,7 +122,7 @@ def clicklog():
     db["clicks"] += 1
     with open("click.json","w") as f:
         f.write(json.dumps(db,ensure_ascii=False,indent=2))
-    return {"status":"ok"}
+    return {"status":"ok","clicks": db["clicks"]}
 
 @app.post("/structure", response_model=StructureResponse)
 def structure(data:Input):
